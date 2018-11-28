@@ -6,6 +6,23 @@ export const keys = {
   GET_PROJECT_DETAILS: "GET_PROJECT_DETAILS"
 };
 
+export const getAllProjects = () =>
+  createAsyncActionCreator(
+    // actionType
+    keys.GET_ALL_PROJECTS,
+    // requestFn
+    projectService.getAllProjectsRequest,
+    //requestParams
+    null
+  );
+
+export const getProjectDetails = projectId =>
+  createAsyncActionCreator(
+    keys.GET_PROJECT_DETAILS,
+    projectService.getProjectDetails,
+    { projectId }
+  );
+
 // export const getTopProjects = page =>
 //   createAsyncActionCreator(
 //     // actionType
@@ -21,10 +38,3 @@ export const keys = {
 //     query,
 //     page
 //   });
-
-// export const getProjectDetails = projectId =>
-//   createAsyncActionCreator(
-//     keys.GET_PROJECT_DETAILS,
-//     projectService.getProjectDetails,
-//     { projectId }
-//   );
