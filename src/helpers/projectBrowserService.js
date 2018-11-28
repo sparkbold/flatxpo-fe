@@ -1,33 +1,36 @@
-// WARNING: Don't check your actual API key into GitHub
-const MOVIE_DB_API_KEY = "MY_API_KEY_HERE";
-const MOVIE_DB_BASE_URL = "https://api.themoviedb.org/3";
+const PROJECT_DB_BASE_URL = "http://localhost:3000/api/v1/projects";
 
-const createMovieDbUrl = (relativeUrl, queryParams) => {
-  let baseUrl = `${MOVIE_DB_BASE_URL}${relativeUrl}?api_key=${MOVIE_DB_API_KEY}&language=en-US`;
-  if (queryParams) {
-    Object.keys(queryParams).forEach(
-      paramName => (baseUrl += `&${paramName}=${queryParams[paramName]}`)
-    );
-  }
-  return baseUrl;
-};
-
-export const getTopMovies = async ({ page }) => {
-  const fullUrl = createMovieDbUrl("/movie/top_rated", {
-    page
-  });
+export const getAllProjects = async () => {
+  const fullUrl = PROJECT_DB_BASE_URL;
   return fetch(fullUrl);
 };
 
-export const searchMovies = async ({ page, query }) => {
-  const fullUrl = createMovieDbUrl("/search/movie", {
-    page,
-    query
-  });
+export const getProjectsDetails = async ({ ProjectsId }) => {
+  const fullUrl = createProjectsDbUrl(`/Projects/${ProjectsId}`);
   return fetch(fullUrl);
 };
 
-export const getMovieDetails = async ({ movieId }) => {
-  const fullUrl = createMovieDbUrl(`/movie/${movieId}`);
-  return fetch(fullUrl);
-};
+// const createProjectsDbUrl = (relativeUrl, queryParams) => {
+//   let baseUrl = `${Projects_DB_BASE_URL}${relativeUrl}?api_key=${Projects_DB_API_KEY}&language=en-US`;
+//   if (queryParams) {
+//     Object.keys(queryParams).forEach(
+//       paramName => (baseUrl += `&${paramName}=${queryParams[paramName]}`)
+//     );
+//   }
+//   return baseUrl;
+// };
+
+// export const getTopProjects = async ({ page }) => {
+//   const fullUrl = createProjectsDbUrl("/Projects/top_rated", {
+//     page
+//   });
+//   return fetch(fullUrl);
+// };
+
+// export const searchProjects = async ({ page, query }) => {
+//   const fullUrl = createProjectsDbUrl("/search/Projects", {
+//     page,
+//     query
+//   });
+//   return fetch(fullUrl);
+// };
