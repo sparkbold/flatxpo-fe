@@ -1,12 +1,12 @@
 const PROJECT_DB_BASE_URL = "http://localhost:3000/api/v1/projects";
 
-export const getAllProjects = async () => {
+export const getAllProjectsRequest = async () => {
   const fullUrl = PROJECT_DB_BASE_URL;
   return fetch(fullUrl);
 };
 
-export const getProjectsDetails = async ({ ProjectsId }) => {
-  const fullUrl = createProjectsDbUrl(`/Projects/${ProjectsId}`);
+export const getProjectDetails = async ({ ProjectsId }) => {
+  const fullUrl = `PROJECT_DB_BASE_URL+${ProjectsId}`;
   return fetch(fullUrl);
 };
 
