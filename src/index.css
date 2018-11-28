@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.ui.inverted.segment {
+  background: linear-gradient(#e66465, #9198e5) !important;
+}
+
+.ui.secondary.inverted.pointing.menu {
+  border-width: 0px !important;
+}
