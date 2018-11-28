@@ -27,7 +27,7 @@ const SignupForm = () => (
     <Grid textAlign="center" style={{ height: "100%" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
-          <Image src="/logo.png" /> Log-in to your account
+          <Image src={require("../images/XPO.png")} /> Create your account
         </Header>
         <Form size="large">
           <Segment stacked>
@@ -35,7 +35,29 @@ const SignupForm = () => (
               fluid
               icon="user"
               iconPosition="left"
-              placeholder="E-mail address"
+              placeholder="First name"
+              name="first_name"
+            />
+            <Form.Input
+              fluid
+              icon="user"
+              iconPosition="left"
+              placeholder="Last name"
+              name="last_name"
+            />
+            <Form.Input
+              fluid
+              icon="user"
+              iconPosition="left"
+              placeholder="username"
+              name="username"
+            />
+            <Form.Input
+              fluid
+              icon="mail"
+              iconPosition="left"
+              placeholder="Email"
+              name="email"
             />
             <Form.Input
               fluid
@@ -46,12 +68,13 @@ const SignupForm = () => (
             />
 
             <Button color="teal" fluid size="large">
-              Login
+              Sign Up
             </Button>
           </Segment>
         </Form>
         <Message>
-          New to us? <a href="#">Sign Up</a>
+          Already signed up with us? <a href="/login">Login</a> or{" "}
+          <a href="/">Home</a>
         </Message>
       </Grid.Column>
     </Grid>

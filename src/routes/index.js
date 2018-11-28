@@ -1,6 +1,6 @@
 import App from "../App";
 import LoginForm from "../components/LoginForm";
-import SignupForm from "../components/LoginForm";
+import SignupForm from "../components/SignupForm";
 
 var indexRoutes = [
   { path: "/login", name: "LoginForm", component: LoginForm },
