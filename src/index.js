@@ -8,16 +8,23 @@ import { Router, Route, Switch } from "react-router-dom";
 
 import indexRoutes from "./routes/index";
 
+import { Provider } from "react-redux";
+import store from "./helpers/store";
+
 const hist = createBrowserHistory();
 
 ReactDOM.render(
-  <Router history={hist}>
-    <Switch>
-      {indexRoutes.map((prop, key) => {
-        return <Route path={prop.path} key={key} component={prop.component} />;
-      })}
-    </Switch>
-  </Router>,
+  <Provider store={store}>
+    <Router history={hist}>
+      <Switch>
+        {indexRoutes.map((prop, key) => {
+          return (
+            <Route path={prop.path} key={key} component={prop.component} />
+          );
+        })}
+      </Switch>
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 

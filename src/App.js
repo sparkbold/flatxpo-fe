@@ -16,6 +16,7 @@ import {
   Visibility
 } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import ProjectBrowserContainer from "./containers/ProjectBrowserContainer";
 
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
@@ -285,27 +286,7 @@ const App = () => (
         >
           <a href="#">OUR FLATIRON GRADS' PROJECTS</a>
         </Divider>
-
-        <Grid container columns={3}>
-          <Grid.Column>
-            <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-          </Grid.Column>
-          <Grid.Column>
-            <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-          </Grid.Column>
-          <Grid.Column>
-            <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-          </Grid.Column>
-          <Grid.Column>
-            <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-          </Grid.Column>
-          <Grid.Column>
-            <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-          </Grid.Column>
-          <Grid.Column>
-            <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-          </Grid.Column>
-        </Grid>
+        <ProjectBrowserContainer />
       </Container>
     </Segment>
 
