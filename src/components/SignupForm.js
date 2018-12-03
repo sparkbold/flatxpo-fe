@@ -27,7 +27,8 @@ const SignupForm = () => (
     <Grid textAlign="center" style={{ height: "100%" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
-          <Image src={require("../images/XPO.png")} /> Create your account
+          <Image src={require("../assets/wireframe/boolean-icing.png")} />{" "}
+          Create your account
         </Header>
         <Form size="large">
           <Segment stacked>

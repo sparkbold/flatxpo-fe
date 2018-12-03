@@ -5,11 +5,18 @@ import * as serviceWorker from "./serviceWorker";
 
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
-
 import indexRoutes from "./routes/index";
 
 import { Provider } from "react-redux";
-import store from "./helpers/store";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import rootReducer from "./reducers/index";
+import { composeWithDevTools } from "redux-devtools-extension";
+
+export const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 const hist = createBrowserHistory();
 

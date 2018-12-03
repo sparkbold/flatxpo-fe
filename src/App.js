@@ -16,7 +16,8 @@ import {
   Visibility
 } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import ProjectBrowserContainer from "./containers/ProjectBrowserContainer";
+import ProjectListContainer from "./containers/ProjectListContainer";
+import ProjectDetailContainer from "./containers/ProjectDetailContainer";
 
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
@@ -227,9 +228,10 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node
 };
 
-const App = () => (
-  <ResponsiveContainer>
-    <Segment style={{ padding: "8em 0em" }} vertical>
+const App = props => {
+  return (
+    <ResponsiveContainer>
+      {/* <Segment style={{ padding: "8em 0em" }} vertical>
       <Grid container stackable verticalAlign="middle">
         <Grid.Row>
           <Grid.Column width={8}>
@@ -264,92 +266,98 @@ const App = () => (
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    </Segment>
+    </Segment> */}
 
-    <Segment style={{ padding: "8em 0em" }} vertical>
-      <Container text>
-        <Header as="h3" style={{ fontSize: "2em" }}>
-          Breaking The Grid, Grabs Your Attention
-        </Header>
-        <p style={{ fontSize: "1.33em" }}>
-          Instead of focusing on content creation and hard work, we have learned
-          how to master the art of doing nothing by providing massive amounts of
-          whitespace and generic content that can seem massive, monolithic and
-          worth your attention.{" "}
-        </p>
+      <Segment style={{ padding: "8em 0em" }} vertical>
+        <Container text>
+          <Header as="h3" style={{ fontSize: "2em" }}>
+            Breaking The Grid, Grabs Your Attention
+          </Header>
+          <p style={{ fontSize: "1.33em" }}>
+            Instead of focusing on content creation and hard work, we have
+            learned how to master the art of doing nothing by providing massive
+            amounts of whitespace and generic content that can seem massive,
+            monolithic and worth your attention.{" "}
+          </p>
+          <Divider
+            as="h4"
+            className="header"
+            horizontal
+            style={{ margin: "3em 0em", textTransform: "uppercase" }}
+          >
+            <a href="#">OUR FLATXPO's PROJECTS</a>
+          </Divider>
+        </Container>
+        <Grid container stackable verticalAlign="middle">
+          {true ? (
+            <ProjectListContainer {...props} />
+          ) : (
+            <ProjectDetailContainer />
+          )}
+        </Grid>
+      </Segment>
 
-        <Divider
-          as="h4"
-          className="header"
-          horizontal
-          style={{ margin: "3em 0em", textTransform: "uppercase" }}
-        >
-          <a href="#">OUR FLATIRON GRADS' PROJECTS</a>
-        </Divider>
-        <ProjectBrowserContainer />
-      </Container>
-    </Segment>
-
-    <Segment style={{ padding: "0em" }} vertical>
-      <Grid celled="internally" columns="equal" stackable>
-        <Grid.Row textAlign="center">
-          <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
-            <Header as="h3" style={{ fontSize: "2em" }}>
-              "What an App"
-            </Header>
-            <p style={{ fontSize: "1.33em" }}>
-              That is what they all say about our Flatiron Grads' apps
-            </p>
-          </Grid.Column>
-          <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
-            <Header as="h3" style={{ fontSize: "2em" }}>
-              "I shouldn't have gone with their competitor."
-            </Header>
-            <p style={{ fontSize: "1.33em" }}>
-              <Image avatar src={require("./images/wireframe/nan.jpg")} />
-              <b>Vi0let</b> Chief Fun Officer Acme Toys
-            </p>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-
-    <Segment inverted vertical style={{ padding: "5em 0em" }}>
-      <Container>
-        <Grid divided inverted stackable>
-          <Grid.Row>
-            <Grid.Column width={3}>
-              <Header inverted as="h4" content="About" />
-              <List link inverted>
-                <List.Item as="a">Sitemap</List.Item>
-                <List.Item as="a">Contact Us</List.Item>
-                <List.Item as="a">Hello World</List.Item>
-                <List.Item as="a">Follow us</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as="h4" content="Services" />
-              <List link inverted>
-                <List.Item as="a">Banana Pre-Order</List.Item>
-                <List.Item as="a">DNA FAQ</List.Item>
-                <List.Item as="a">How To Access</List.Item>
-                <List.Item as="a">Favorite X-Men</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={7}>
-              <Header as="h4" inverted>
-                Footer Header
+      <Segment style={{ padding: "0em" }} vertical>
+        <Grid celled="internally" columns="equal" stackable>
+          <Grid.Row textAlign="center">
+            <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
+              <Header as="h3" style={{ fontSize: "2em" }}>
+                "What an App"
               </Header>
-              <p>
-                Extra space for a call to action inside the footer that could
-                help re-engage users.
+              <p style={{ fontSize: "1.33em" }}>
+                That is what they all say about our Flatiron Grads' apps
+              </p>
+            </Grid.Column>
+            <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
+              <Header as="h3" style={{ fontSize: "2em" }}>
+                "I shouldn't have gone with their competitor."
+              </Header>
+              <p style={{ fontSize: "1.33em" }}>
+                <Image avatar src={require("./assets/wireframe/nan.jpg")} />
+                <b>Vi0let</b> Chief Fun Officer Acme Toys
               </p>
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Container>
-    </Segment>
-  </ResponsiveContainer>
-);
+      </Segment>
+
+      <Segment inverted vertical style={{ padding: "5em 0em" }}>
+        <Container>
+          <Grid divided inverted stackable>
+            <Grid.Row>
+              <Grid.Column width={3}>
+                <Header inverted as="h4" content="About" />
+                <List link inverted>
+                  <List.Item as="a">Sitemap</List.Item>
+                  <List.Item as="a">Contact Us</List.Item>
+                  <List.Item as="a">Hello World</List.Item>
+                  <List.Item as="a">Follow us</List.Item>
+                </List>
+              </Grid.Column>
+              <Grid.Column width={3}>
+                <Header inverted as="h4" content="Services" />
+                <List link inverted>
+                  <List.Item as="a">Banana Pre-Order</List.Item>
+                  <List.Item as="a">DNA FAQ</List.Item>
+                  <List.Item as="a">How To Access</List.Item>
+                  <List.Item as="a">Favorite X-Men</List.Item>
+                </List>
+              </Grid.Column>
+              <Grid.Column width={7}>
+                <Header as="h4" inverted>
+                  Footer Header
+                </Header>
+                <p>
+                  Extra space for a call to action inside the footer that could
+                  help re-engage users.
+                </p>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+      </Segment>
+    </ResponsiveContainer>
+  );
+};
 
 export default App;
