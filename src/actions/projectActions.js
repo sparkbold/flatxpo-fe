@@ -35,7 +35,6 @@ export const LOAD_PROJECT_ERROR = "LOAD_PROJECT_ERROR";
 export function loadProjectDetails(projectId) {
   // Interpreted by the thunk middleware:
   return dispatch => {
-    console.log("???????");
     dispatch({
       type: "LOAD_PROJECT_REQUEST"
     });
@@ -143,10 +142,10 @@ export function addComment(project_id, content) {
     });
 
     fetch("http://localhost:3000/api/v1/comments", {
-      method: "PATCH",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer" + localStorage.getItem("id_token")
+        Authorization: "Bearer " + localStorage.id_token
       },
       body: JSON.stringify({
         project_id,

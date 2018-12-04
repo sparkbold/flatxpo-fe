@@ -1,7 +1,7 @@
 import {
   SET_PROJECTS_REQUEST,
   SET_PROJECTS_SUCCESS
-} from "../actions/projectsList";
+} from "../actions/projectActions";
 
 const INITIAL_STATE = {
   loading: false,

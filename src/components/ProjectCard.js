@@ -1,7 +1,7 @@
 import React from "react";
-import { Card, Icon, Image, Input } from "semantic-ui-react";
-import { connect } from "react-redux";
-import { loadProjectDetails } from "../actions/projectActions";
+import { Card, Icon, Image } from "semantic-ui-react";
+// import { connect } from "react-redux";
+// import { loadProjectDetails } from "../actions/projectActions";
 
 class ProjectCardComponent extends React.Component {
   constructor(props) {
@@ -11,10 +11,9 @@ class ProjectCardComponent extends React.Component {
       isMouseOver: false
     };
   }
-  loadProjectDetails = id => {
+  handleClick = id => {
     console.log("projectID", id);
-    this.props.loadProjectDetails(id);
-    this.props.history.push("/projectdetail");
+    this.props.history.push(`/projects/${id}`);
   };
   render() {
     const { project } = this.props;
@@ -32,7 +31,7 @@ class ProjectCardComponent extends React.Component {
       >
         <Image
           src={require(`../assets/wireframe/boolean-icing.png`)}
-          onClick={() => this.loadProjectDetails(project.id)}
+          onClick={() => this.handleClick(project.id)}
         />
         <Card.Content>
           <Card.Header>{project.title}</Card.Header>
@@ -43,22 +42,50 @@ class ProjectCardComponent extends React.Component {
         </Card.Content>
 
         <Card.Content extra>
-          <a className="right floated">
+          {/* eslint-disable-next-line */}
+          <a
+            className="right floated"
+            href="#"
+            onClick={e => {
+              e.preventDefault();
+              console.log("====>ClickVote");
+            }}
+          >
             <Icon name="thumbs up" />
             {project.vote_count} Likes
           </a>
-          <a>
+          {/* eslint-disable-next-line */}
+          <a
+            href="#"
+            onClick={e => {
+              e.preventDefault();
+              console.log("====>ClickView");
+            }}
+          >
             <Icon name="eye" />
             {project.views} views
           </a>
         </Card.Content>
 
         <Card.Content extra>
-          <a className="right floated" href={project.demo_url} target="_blank">
+          {/* eslint-disable-next-line */}
+          <a
+            className="right floated"
+            href={project.demo_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Icon name="heart" />
             Demo
           </a>
-          <a>
+          {/* eslint-disable-next-line */}
+          <a
+            href="#"
+            onClick={e => {
+              e.preventDefault();
+              console.log("====>ClickComment");
+            }}
+          >
             <Icon name="comment" />
             {project.comment_count} comments
           </a>
@@ -68,7 +95,4 @@ class ProjectCardComponent extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  { loadProjectDetails: id => loadProjectDetails(id) }
-)(ProjectCardComponent);
+export default ProjectCardComponent;

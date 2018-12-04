@@ -1,18 +1,12 @@
-import PropTypes from "prop-types";
 import React, { Component, Fragment } from "react";
 import {
   Button,
   Container,
-  Grid,
-  Header,
   Icon,
-  Image,
-  List,
   Menu,
   Responsive,
   Segment,
-  Sidebar,
-  Visibility
+  Sidebar
 } from "semantic-ui-react";
 import HomepageHeading from "../components/HomepageHeading";
 import AuthService from "../services/AuthService";

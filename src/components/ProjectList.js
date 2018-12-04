@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Segment,
-  Container,
-  Header,
-  Divider,
-  Input
-} from "semantic-ui-react";
+import { Grid, Segment, Container, Header, Divider } from "semantic-ui-react";
 import ProjectCard from "../components/ProjectCard";
 import LoaderComponent from "./LoaderComponent";
 
@@ -42,6 +35,7 @@ const ProjectListComponent = ({ projects, loading, history }) => {
           horizontal
           style={{ margin: "3em 0em", textTransform: "uppercase" }}
         >
+          {/* eslint-disable-next-line */}
           <a>OUR FLATXPO's PROJECTS</a>
         </Divider>
       </Container>

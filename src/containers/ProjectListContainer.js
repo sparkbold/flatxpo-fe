@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Grid } from "semantic-ui-react";
 import App from "../App";
 
-import { setProjects } from "../actions/projectsList";
+import { setProjects } from "../actions/projectActions";
 import ProjectList from "../components/ProjectList";
 
 class ProjectListContainer extends React.Component {

@@ -1,34 +1,32 @@
 import React from "react";
 import {
   Grid,
-  Card,
-  Image,
   Segment,
   Header,
   Button,
-  Icon,
   Comment,
   Form
 } from "semantic-ui-react";
-import LoaderComponent from "./LoaderComponent";
-import { connect } from "react-redux";
 
-const styles = {
-  projectColumn: {
-    marginBottom: 25
-  }
-};
 class ProjectDetail extends React.Component {
   state = {
     content: ""
   };
   render = () => {
-    const { project } = this.props;
+    // console.log("ProjectDetail props", this.props);
+    const { project, onAddComment } = this.props;
+    console.log(project.user ? project.user.username : "No user");
     const projectComments = project.comments
       ? project.comments.map(comment => (
           <Comment.Group key={comment.id}>
             <Comment>
-              <Comment.Avatar src={comment.user.avatar} />
+              <Comment.Avatar
+                src={
+                  comment.user.avatar
+                    ? comment.user.avatar
+                    : comment.user.avatar_url
+                }
+              />
               <Comment.Content>
                 <Comment.Author as="a">{comment.user.username}</Comment.Author>
                 <Comment.Metadata>
@@ -48,7 +46,9 @@ class ProjectDetail extends React.Component {
             {/* <Image src={require(`../assets/wireframe/boolean-icing.png`)} /> */}
             <Grid.Column width={8}>
               <Header as="h1">{project.title}</Header>
-              <Header as="h3">{project.user.username}</Header>
+              <Header as="h3">
+                by {project.user.first_name} {project.user.last_name}
+              </Header>
               <span className="date">{project.created_at}</span>
 
               <p style={{ fontSize: "1.33em" }}>
@@ -68,13 +68,14 @@ class ProjectDetail extends React.Component {
               {projectComments}
               <Form
                 reply
-                onSubmit={this.props.onAddComment(
-                  project.id,
-                  this.state.content
-                )}
+                onSubmit={() => onAddComment(project.id, this.state.content)}
               >
                 <Form.TextArea
-                  onChange={e => this.setState({ content: e.target.value })}
+                  onChange={e =>
+                    this.setState({
+                      content: e.target.value
+                    })
+                  }
                 />
                 <Button
                   content="Add Comment"
@@ -98,11 +99,4 @@ class ProjectDetail extends React.Component {
   };
 }
 
-export default connect(
-  state => (
-    {
-      project: state.projectDetail.project
-    },
-    { onAddComment: (project_id, content) => addComment(project_id, content) }
-  )
-)(ProjectDetail);
+export default ProjectDetail;

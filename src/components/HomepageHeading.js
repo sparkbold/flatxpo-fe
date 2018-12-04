@@ -1,18 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  List,
-  Menu,
-  Responsive,
-  Segment,
-  Sidebar,
-  Visibility
-} from "semantic-ui-react";
+import { Button, Container, Header, Icon } from "semantic-ui-react";
 
 const HomepageHeading = ({ mobile }) => (
   <Container text>

@@ -1,26 +1,18 @@
 import PropTypes from "prop-types";
-import React, { Component } from "react";
+import React from "react";
 import {
-  Button,
   Container,
   Grid,
   Header,
-  Icon,
   Image,
   List,
-  Menu,
-  Responsive,
-  Segment,
-  Sidebar,
-  Visibility
+  Segment
 } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import AuthService from "./services/AuthService";
+
 import HomepageHeading from "./components/HomepageHeading";
 import DesktopContainer from "./containers/DesktopContainer";
 import MobileContainer from "./containers/MobileContainer";
-
-const Auth = new AuthService();
 
 HomepageHeading.propTypes = {
   mobile: PropTypes.bool
