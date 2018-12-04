@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid, Dimmer, Loader, Image, Segment } from "semantic-ui-react";
+import { Grid, Dimmer, Loader, Image, Segment, Input } from "semantic-ui-react";
 
-import { loadProjectDetails } from "../actions/projectsList";
+// import { loadProjectDetails, addComment } from "../actions/projectsList";
 import ProjectDetail from "../components/ProjectDetail";
+import App from "../App";
 
 class ProjectDetailsContainer extends React.Component {
   componentDidMount() {
@@ -12,23 +13,16 @@ class ProjectDetailsContainer extends React.Component {
 
   render() {
     console.log(this.props);
-    return this.props.loading ? (
-      <Segment>
-        <Dimmer active>
-          <Loader />
-        </Dimmer>
-
-        <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-      </Segment>
-    ) : (
-      <Grid>
-        <ProjectDetail project={this.props.project} />;
-      </Grid>
+    return (
+      <App>
+        <ProjectDetail project={this.props.project} />
+      </App>
     );
   }
 }
 const mapDispatchToProps = {
-  onLoadProjectDetails: loadProjectDetails
+  onLoadProjectDetails: loadProjectDetails,
+  onAddComment: addComment
 };
 
 function mapStateToProps(state) {

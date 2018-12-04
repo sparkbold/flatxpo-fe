@@ -1,7 +1,7 @@
 import React from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Icon, Image, Input } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { loadProjectDetails } from "../actions/projectsList";
+import { loadProjectDetails } from "../actions/projectActions";
 
 class ProjectCardComponent extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class ProjectCardComponent extends React.Component {
         onMouseLeave={() => this.setState({ isMouseOver: false })}
       >
         <Image
-          src={project.image}
+          src={require(`../assets/wireframe/boolean-icing.png`)}
           onClick={() => this.loadProjectDetails(project.id)}
         />
         <Card.Content>

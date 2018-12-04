@@ -1,8 +1,8 @@
 import React from "react";
 import { Dimmer, Loader, Image, Segment } from "semantic-ui-react";
 
-const LoaderComponent = ({ isLoading, children }) => {
-  if (isLoading) {
+const LoaderComponent = ({ loading, children }) => {
+  if (loading) {
     return (
       <Segment>
         <Dimmer active>

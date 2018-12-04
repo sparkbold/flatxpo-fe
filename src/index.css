@@ -14,7 +14,16 @@ code {
 }
 
 .ui.inverted.segment {
-  background: linear-gradient(#e66465, #9198e5) !important;
+  background: #0da6ed !important;
+  -webkit-transition: background-color 4s ease-out;
+  -moz-transition: background-color 4s ease-out;
+  -o-transition: background-color 4s ease-out;
+  transition: background-color 4s ease-out;
+}
+
+.ui.inverted.segment:hover {
+  background: #e66465 !important;
+
 }
 
 .ui.secondary.inverted.pointing.menu {

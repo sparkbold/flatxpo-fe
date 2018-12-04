@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import Dashboard from "./containers/Dashboard";
 import * as serviceWorker from "./serviceWorker";
 
 import { createBrowserHistory } from "history";
@@ -12,6 +13,7 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers/index";
 import { composeWithDevTools } from "redux-devtools-extension";
+import PrivateRoute from "./routes/PrivateRoute";
 
 export const store = createStore(
   rootReducer,
@@ -29,6 +31,7 @@ ReactDOM.render(
             <Route path={prop.path} key={key} component={prop.component} />
           );
         })}
+        <PrivateRoute path="/dashboard" component={Dashboard} />
       </Switch>
     </Router>
   </Provider>,
