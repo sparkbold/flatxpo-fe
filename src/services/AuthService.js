@@ -57,6 +57,7 @@ export default class AuthService {
 
   logout(cb) {
     // Clear user token and profile data from localStorage
+    console.log("Hey! I am getting out of here. Clear my token!");
     localStorage.removeItem("id_token");
     setTimeout(cb, 100);
   }
