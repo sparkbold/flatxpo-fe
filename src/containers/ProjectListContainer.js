@@ -1,10 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid } from "semantic-ui-react";
+import { Grid, Container, Menu } from "semantic-ui-react";
 import App from "../App";
 
-import { setProjects } from "../actions/projectActions";
-import ProjectList from "../components/ProjectList";
+import {
+  setProjects,
+  clickBusiness,
+  clickEducation,
+  clickProductivity,
+  clickGames,
+  clickAll
+} from "../actions/projectActions";
+import ProjectListComponent from "../components/ProjectList";
 
 class ProjectListContainer extends React.Component {
   componentDidMount() {
@@ -12,11 +19,16 @@ class ProjectListContainer extends React.Component {
   }
 
   render() {
-    // console.log("project list container", this.props);
+    const filteredProjects = this.props.filtertype
+      ? this.props.projects.filter(p =>
+          p.project_tags.includes(this.props.filtertype)
+        )
+      : this.props.projects;
+    console.log("Filteredlist", filteredProjects);
     return (
       <App>
         <Grid container columns={3}>
-          <ProjectList projects={this.props.projects} {...this.props} />;
+          <ProjectListComponent projects={filteredProjects} />;
         </Grid>
       </App>
     );
@@ -29,7 +41,8 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
   return {
     loading: state.projectsList.loading,
-    projects: state.projectsList.projects
+    projects: state.projectsList.projects,
+    filtertype: state.projectsList.filtertype
   };
 }
 export default connect(

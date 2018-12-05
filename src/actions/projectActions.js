@@ -16,7 +16,8 @@ export function setProjects() {
         dispatch({
           type: SET_PROJECTS_SUCCESS,
           payload: {
-            projects: response
+            projects: response,
+            filtertype: ""
           }
         });
       })
@@ -25,6 +26,34 @@ export function setProjects() {
       });
   };
 }
+//---------------------FILTER PROJECTS-----------------------//
+
+export const CLICK_BUSINESS = "CLICK_BUSINESS";
+export const CLICK_EDUCATION = "CLICK_EDUCATION";
+export const CLICK_PRODUCTITY = "CLICK_PRODUCTITY";
+export const CLICK_GAMES = "CLICK_GAMES";
+export const CLICK_ALL = "CLICK_ALL";
+
+export const clickBusiness = () => ({
+  type: CLICK_BUSINESS,
+  payload: { filtertype: "Business" }
+});
+export const clickEducation = () => ({
+  type: CLICK_EDUCATION,
+  payload: { filtertype: "Education" }
+});
+export const clickProductivity = () => ({
+  type: CLICK_PRODUCTITY,
+  payload: { filtertype: "Productivity" }
+});
+export const clickGames = () => ({
+  type: CLICK_GAMES,
+  payload: { filtertype: "Games" }
+});
+export const clickAll = () => ({
+  type: CLICK_ALL,
+  payload: { filtertype: null }
+});
 
 //---------------------LOAD--------------------------//
 export const LOAD_PROJECT = "LOAD_PROJECT";

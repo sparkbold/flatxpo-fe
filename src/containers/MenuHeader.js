@@ -6,11 +6,18 @@ import {
   Segment,
   Visibility
 } from "semantic-ui-react";
+import { connect } from "react-redux";
+import {
+  clickBusiness,
+  clickEducation,
+  clickProductivity,
+  clickGames
+} from "../actions/projectActions";
 
 import AuthService from "../services/AuthService";
 const Auth = new AuthService();
 
-export default class MenuHeader extends Component {
+class MenuHeader extends Component {
   state = {};
 
   hideFixedMenu = () => this.setState({ fixed: false });
@@ -43,10 +50,18 @@ export default class MenuHeader extends Component {
               <Menu.Item as="a" active href="/">
                 Home
               </Menu.Item>
-              <Menu.Item as="a">Business</Menu.Item>
-              <Menu.Item as="a">Entertainment</Menu.Item>
-              <Menu.Item as="a">Productivity</Menu.Item>
-              <Menu.Item as="a">Game</Menu.Item>
+              <Menu.Item as="a" onClick={this.props.onClickBusiness}>
+                Business
+              </Menu.Item>
+              <Menu.Item as="a" onClick={this.props.onClickEducation}>
+                Education
+              </Menu.Item>
+              <Menu.Item as="a" onClick={this.props.onClickProductivity}>
+                Productivity
+              </Menu.Item>
+              <Menu.Item as="a" onClick={this.props.onClickGames}>
+                Games
+              </Menu.Item>
               {!Auth.loggedIn() ? (
                 <Menu.Item position="right">
                   <Button as="a" inverted={!fixed} href="/login">
@@ -89,3 +104,13 @@ export default class MenuHeader extends Component {
     );
   }
 }
+const mapDispatchToProps = {
+  onClickBusiness: clickBusiness,
+  onClickEducation: clickEducation,
+  onClickProductivity: clickProductivity,
+  onClickGames: clickGames
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(MenuHeader);

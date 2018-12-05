@@ -9,6 +9,7 @@ const styles = {
   }
 };
 const ProjectListComponent = ({ projects, loading, history }) => {
+  console.log("Inside project list", projects);
   const projectColumns = projects
     ? projects.map(project => (
         <Grid.Column style={styles.projectColumn} key={project.id}>
@@ -20,15 +21,15 @@ const ProjectListComponent = ({ projects, loading, history }) => {
   return (
     <Segment vertical>
       <Container text>
-        <Header as="h3" style={{ fontSize: "2em" }}>
+        <Header as="h3" style={{ fontSize: "2em" }} textAlign="center">
           Breaking The Grid, Grabs Your Attention
         </Header>
-        <p style={{ fontSize: "1.33em" }}>
+        {/* <p style={{ fontSize: "1.33em" }}>
           Instead of focusing on content creation and hard work, we have learned
           how to master the art of doing nothing by providing massive amounts of
           whitespace and generic content that can seem massive, monolithic and
           worth your attention.{" "}
-        </p>
+        </p> */}
         <Divider
           as="h4"
           className="header"
