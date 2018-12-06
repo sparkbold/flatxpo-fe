@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { loadProjectDetails, addComment } from "../actions/projectActions";
+import {
+  loadProjectDetails,
+  addComment,
+  addVote
+} from "../actions/projectActions";
 import ProjectDetail from "../components/ProjectDetail";
 import App from "../App";
 
@@ -17,10 +21,14 @@ class ProjectDetailsContainer extends React.Component {
     return (
       <App>
         <ProjectDetail
+          history={this.props.history}
           project={this.props.project}
           onAddComment={(project_id, content) =>
             this.props.onAddComment(project_id, content)
           }
+          onAddVote={project_id => {
+            this.props.onAddVote(project_id);
+          }}
           onLoadProjectDetails={id => this.props.onLoadProjectDetails(id)}
         />
       </App>
@@ -29,7 +37,8 @@ class ProjectDetailsContainer extends React.Component {
 }
 const mapDispatchToProps = {
   onLoadProjectDetails: loadProjectDetails,
-  onAddComment: addComment
+  onAddComment: addComment,
+  onAddVote: addVote
 };
 
 function mapStateToProps(state) {

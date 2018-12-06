@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
-// import { connect } from "react-redux";
-// import { loadProjectDetails } from "../actions/projectActions";
+import { connect } from "react-redux";
+import { addVote } from "../actions/projectActions";
 
 class ProjectCardComponent extends React.Component {
   constructor(props) {
@@ -11,8 +11,8 @@ class ProjectCardComponent extends React.Component {
       isMouseOver: false
     };
   }
-  handleClick = id => {
-    console.log("projectID", id);
+  handleClick = (e, id) => {
+    e.preventDefault();
     this.props.history.push(`/projects/${id}`);
   };
   render() {
@@ -31,7 +31,7 @@ class ProjectCardComponent extends React.Component {
       >
         <Image
           src={project.img_url ? project.img_url : project.image}
-          onClick={() => this.handleClick(project.id)}
+          onClick={e => this.handleClick(e, project.id)}
         />
         <Card.Content>
           <Card.Header>{project.title}</Card.Header>
@@ -48,11 +48,12 @@ class ProjectCardComponent extends React.Component {
             href="#"
             onClick={e => {
               e.preventDefault();
+              this.props.onAddVote(project.id);
               console.log("====>ClickVote");
             }}
           >
             <Icon name="thumbs up" />
-            {project.vote_count} Likes
+            {project.votes.length} Likes
           </a>
           {/* eslint-disable-next-line */}
           <a
@@ -94,5 +95,11 @@ class ProjectCardComponent extends React.Component {
     );
   }
 }
+const mapDispatchToProps = {
+  onAddVote: addVote
+};
 
-export default ProjectCardComponent;
+export default connect(
+  null,
+  mapDispatchToProps
+)(ProjectCardComponent);

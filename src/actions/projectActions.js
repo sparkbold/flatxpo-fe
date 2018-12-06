@@ -195,3 +195,41 @@ export function addComment(project_id, content) {
       });
   };
 }
+
+//---------------------ADD COMMENT--------------------------//
+export const ADD_VOTE = "ADD_VOTE";
+export const ADD_VOTE_REQUEST = "ADD_VOTE_REQUEST";
+export const ADD_VOTE_SUCCESS = "ADD_VOTE_SUCCESS";
+export const ADD_VOTE_ERROR = "ADD_VOTE_ERROR";
+
+export function addVote(project_id) {
+  return dispatch => {
+    dispatch({
+      type: ADD_VOTE_REQUEST,
+      payload: { project_id }
+    });
+
+    fetch("http://localhost:3000/api/v1/votes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.id_token
+      },
+      body: JSON.stringify({
+        project_id
+      })
+    })
+      .then(response => response.json())
+      .then(response => {
+        dispatch({
+          type: ADD_VOTE_SUCCESS,
+          payload: {
+            response
+          }
+        });
+      })
+      .catch(error => {
+        dispatch({ type: ADD_VOTE_ERROR, payload: { error } });
+      });
+  };
+}

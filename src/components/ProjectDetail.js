@@ -93,7 +93,7 @@ class ProjectDetail extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign="center">
-              <Button size="huge" href="/">
+              <Button size="huge" onClick={() => this.props.history.push("/")}>
                 Back
               </Button>
             </Grid.Column>

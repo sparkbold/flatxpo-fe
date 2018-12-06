@@ -5,13 +5,15 @@ import {
   CLICK_EDUCATION,
   CLICK_GAMES,
   CLICK_PRODUCTITY,
-  CLICK_ALL
+  CLICK_ALL,
+  ADD_VOTE_REQUEST,
+  ADD_VOTE_SUCCESS
 } from "../actions/projectActions";
 
 const INITIAL_STATE = {
   loading: false,
   filtertype: null,
-  projects: []
+  projects: [{ votes: [] }]
 };
 
 const projectsListReducer = function(state = INITIAL_STATE, action) {
@@ -42,6 +44,20 @@ const projectsListReducer = function(state = INITIAL_STATE, action) {
     case CLICK_ALL:
       console.log("Click", action.payload.filtertype);
       return { ...state, filtertype: action.payload.filtertype };
+    //--------------addVote-------------//
+    case ADD_VOTE_REQUEST:
+      return { ...state, loading: true };
+
+    case ADD_VOTE_SUCCESS:
+      let targetProject = action.payload.response.votes.project;
+      return {
+        ...state,
+        projects: [
+          ...state.projects.filter(project => project.id != targetProject.id),
+          targetProject
+        ].sort((a, b) => a.id - b.id),
+        loading: false
+      };
     default:
       return state;
   }

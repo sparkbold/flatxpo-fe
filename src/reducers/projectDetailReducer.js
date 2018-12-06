@@ -4,12 +4,14 @@ import {
   CREATE_PROJECT_REQUEST,
   CREATE_PROJECT_SUCCESS,
   ADD_COMMENT_REQUEST,
-  ADD_COMMENT_SUCCESS
+  ADD_COMMENT_SUCCESS,
+  ADD_VOTE_REQUEST,
+  ADD_VOTE_SUCCESS
 } from "../actions/projectActions";
 
 const INITIAL_STATE = {
   loading: false,
-  project: { user: {} }
+  project: { user: {}, votes: [] }
 };
 
 const projectsDetailReducer = function(state = INITIAL_STATE, action) {
@@ -41,6 +43,19 @@ const projectsDetailReducer = function(state = INITIAL_STATE, action) {
             action.payload.response.comments
           ]
         },
+        loading: false
+      };
+    //--------------addVote-------------//
+    case ADD_VOTE_REQUEST:
+      return { ...state, loading: true };
+
+    case ADD_VOTE_SUCCESS:
+      return {
+        ...state, // project: {
+        //   ...state.project,
+        //   votes: [...state.project.votes, action.payload.response.votes]
+        // },
+        project: action.payload.response.votes.project,
         loading: false
       };
     default:
