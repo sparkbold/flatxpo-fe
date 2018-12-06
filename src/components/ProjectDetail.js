@@ -5,12 +5,16 @@ import {
   Header,
   Button,
   Comment,
-  Form
+  Form,
+  Image
 } from "semantic-ui-react";
 
 class ProjectDetail extends React.Component {
   state = {
     content: ""
+  };
+  resetForm = () => {
+    this.setState({ content: "" });
   };
   render = () => {
     // console.log("ProjectDetail props", this.props);
@@ -43,7 +47,6 @@ class ProjectDetail extends React.Component {
       <Segment style={{ padding: "1em 0em" }} vertical>
         <Grid container stackable verticalAlign="top">
           <Grid.Row>
-            {/* <Image src={require(`../assets/wireframe/boolean-icing.png`)} /> */}
             <Grid.Column width={8}>
               <Header as="h1">{project.title}</Header>
               <Header as="h3">
@@ -51,24 +54,17 @@ class ProjectDetail extends React.Component {
               </Header>
               <span className="date">{project.created_at}</span>
 
-              <p style={{ fontSize: "1.33em" }}>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum."
-              </p>
-            </Grid.Column>
-            <Grid.Column floated="right" width={6}>
+              <p style={{ fontSize: "1.33em" }}>{project.description}</p>
               <Header as="h3" dividing>
                 Comments
               </Header>
               {projectComments}
               <Form
                 reply
-                onSubmit={() => onAddComment(project.id, this.state.content)}
+                onSubmit={() => {
+                  onAddComment(project.id, this.state.content);
+                  this.resetForm();
+                }}
               >
                 <Form.TextArea
                   onChange={e =>
@@ -84,6 +80,15 @@ class ProjectDetail extends React.Component {
                   primary
                 />
               </Form>
+            </Grid.Column>
+            <Grid.Column floated="right" width={6}>
+              <Image
+                src={
+                  project.img_url
+                    ? project.img_url
+                    : require(`../assets/wireframe/boolean-icing.png`)
+                }
+              />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>

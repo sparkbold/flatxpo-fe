@@ -31,8 +31,8 @@ class ProjectCardComponent extends React.Component {
       >
         <Image
           src={
-            project.img
-              ? project.img
+            project.img_url
+              ? project.img_url
               : require(`../assets/wireframe/boolean-icing.png`)
           }
           onClick={() => this.handleClick(project.id)}

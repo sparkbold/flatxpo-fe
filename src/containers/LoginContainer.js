@@ -24,16 +24,21 @@ export default class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.Auth.login(this.state.username, this.state.password).then(response => {
-      console.log("====>", response);
-      if (response.jwt) {
-        return this.props.history.replace("/");
-      } else {
-        alert(response.message);
-        this.resetForm();
-        return this.props.history.push("/login");
-      }
-    });
+    this.Auth.login(this.state.username, this.state.password)
+      .then(response => {
+        console.log("====>", response);
+        if (response.jwt) {
+          return this.props.history.replace("/");
+        } else {
+          alert(response.message);
+          this.resetForm();
+          return this.props.history.push("/login");
+        }
+      })
+      .catch(err => {
+        alert(err);
+        this.props.history.replace("/login");
+      });
   };
 
   componentWillMount() {

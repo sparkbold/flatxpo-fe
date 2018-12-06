@@ -17,9 +17,9 @@ class AddProjectContainer extends React.Component {
     description: "",
     github_url: "",
     demo_url: "",
-    imgage: "",
+    image: "",
     img: "",
-    view: "1"
+    views: "1"
   };
 
   handleChange = e => {
@@ -31,20 +31,21 @@ class AddProjectContainer extends React.Component {
     console.log("AddProjectfired");
     e.preventDefault();
     const formData = new FormData();
-    const projectData = {
-      title: this.state.title,
-      slug: this.state.title
+    formData.append("project[title]", this.state.title);
+    formData.append(
+      "slug",
+      this.state.title
         .toLowerCase()
         .split(" ")
-        .join("_"),
-      description: this.state.description,
-      github_url: this.state.github_url,
-      demo_url: this.state.demo_url,
-      img: this.state.img,
-      views: 1
-    };
-    formData.append("project", projectData);
-    // console.log(projectData);
+        .join("_")
+    );
+    formData.append("project[description]", this.state.description);
+    formData.append("project[github_url]", this.state.github_url);
+    formData.append("project[demo_url]", this.state.demo_url);
+    formData.append("project[img]", this.state.img);
+    formData.append("project[views]", this.state.views);
+
+    // console.log(formData);
     this.props.onCreateProject(formData);
     this.props.history.push("/");
   };
