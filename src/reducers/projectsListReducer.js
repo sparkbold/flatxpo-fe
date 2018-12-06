@@ -26,7 +26,7 @@ const projectsListReducer = function(state = INITIAL_STATE, action) {
     case SET_PROJECTS_SUCCESS:
       return {
         ...state,
-        projects: action.payload.projects,
+        projects: action.payload.projects.sort((a, b) => b.id - a.id),
         loading: false
       };
     case CLICK_BUSINESS:
@@ -55,7 +55,7 @@ const projectsListReducer = function(state = INITIAL_STATE, action) {
         projects: [
           ...state.projects.filter(project => project.id != targetProject.id),
           targetProject
-        ].sort((a, b) => a.id - b.id),
+        ].sort((a, b) => b.id - a.id),
         loading: false
       };
     default:

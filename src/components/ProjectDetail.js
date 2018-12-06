@@ -8,7 +8,8 @@ import {
   Form,
   Image
 } from "semantic-ui-react";
-
+import AuthService from "../services/AuthService";
+const Auth = new AuthService();
 class ProjectDetail extends React.Component {
   state = {
     content: ""
@@ -62,7 +63,9 @@ class ProjectDetail extends React.Component {
               <Form
                 reply
                 onSubmit={() => {
-                  onAddComment(project.id, this.state.content);
+                  Auth.loggedIn()
+                    ? onAddComment(project.id, this.state.content)
+                    : alert("Please login to comment");
                   this.resetForm();
                 }}
               >

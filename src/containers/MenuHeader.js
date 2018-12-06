@@ -51,19 +51,39 @@ class MenuHeader extends Component {
               <Menu.Item as="a" active onClick={() => history.push("/")}>
                 Home
               </Menu.Item>
-              <Menu.Item as="a" onClick={this.props.onClickAll}>
+              <Menu.Item
+                as="a"
+                href="#projects"
+                onClick={this.props.onClickAll}
+              >
                 All
               </Menu.Item>
-              <Menu.Item as="a" onClick={this.props.onClickBusiness}>
+              <Menu.Item
+                as="a"
+                href="#projects"
+                onClick={this.props.onClickBusiness}
+              >
                 Business
               </Menu.Item>
-              <Menu.Item as="a" onClick={this.props.onClickEducation}>
+              <Menu.Item
+                as="a"
+                href="#projects"
+                onClick={this.props.onClickEducation}
+              >
                 Education
               </Menu.Item>
-              <Menu.Item as="a" onClick={this.props.onClickProductivity}>
+              <Menu.Item
+                as="a"
+                href="#projects"
+                onClick={this.props.onClickProductivity}
+              >
                 Productivity
               </Menu.Item>
-              <Menu.Item as="a" onClick={this.props.onClickGames}>
+              <Menu.Item
+                as="a"
+                href="#projects"
+                onClick={this.props.onClickGames}
+              >
                 Games
               </Menu.Item>
               {!Auth.loggedIn() ? (
