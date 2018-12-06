@@ -18,7 +18,7 @@ class ProjectDetail extends React.Component {
     this.setState({ content: "" });
   };
   render = () => {
-    // console.log("ProjectDetail props", this.props);
+    console.log("ProjectDetail props", this.props.project);
     const { project, onAddComment } = this.props;
     console.log(project.user ? project.user.username : "No user");
     const projectComments = project.comments
@@ -51,7 +51,11 @@ class ProjectDetail extends React.Component {
             <Grid.Column width={8}>
               <Header as="h1">{project.title}</Header>
               <Header as="h3">
-                by {project.user.first_name} {project.user.last_name}
+                by{" "}
+                {project.user.first_name ? project.user.first_name : "Loading"}{" "}
+                {project.user.last_name
+                  ? project.user.last_name
+                  : "Still loading! Damn it!"}
               </Header>
               <span className="date">{project.created_at}</span>
 

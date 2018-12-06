@@ -27,7 +27,12 @@ const projectsDetailReducer = function(state = INITIAL_STATE, action) {
       return { ...state, loading: true };
 
     case CREATE_PROJECT_SUCCESS:
-      return { ...state, project: action.payload.project, loading: false };
+      console.log("created project", action.payload.project.response);
+      return {
+        ...state,
+        project: action.payload.project.response,
+        loading: false
+      };
 
     //--------------addComment--------------//
     case ADD_COMMENT_REQUEST:

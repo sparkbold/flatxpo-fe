@@ -12,7 +12,10 @@ const ProjectListComponent = ({ projects, loading, history }) => {
   console.log("Inside project list", projects);
   const projectColumns = projects
     ? projects.map(project => (
-        <Grid.Column style={styles.projectColumn} key={project.id}>
+        <Grid.Column
+          style={styles.projectColumn}
+          key={"listcontainer" + project.id}
+        >
           <ProjectCard project={project} history={history} />
         </Grid.Column>
       ))

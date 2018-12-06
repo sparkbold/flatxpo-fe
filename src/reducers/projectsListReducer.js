@@ -7,7 +7,9 @@ import {
   CLICK_PRODUCTITY,
   CLICK_ALL,
   ADD_VOTE_REQUEST,
-  ADD_VOTE_SUCCESS
+  ADD_VOTE_SUCCESS,
+  CREATE_PROJECT_REQUEST,
+  CREATE_PROJECT_SUCCESS
 } from "../actions/projectActions";
 
 const INITIAL_STATE = {
@@ -19,10 +21,7 @@ const INITIAL_STATE = {
 const projectsListReducer = function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SET_PROJECTS_REQUEST:
-      return {
-        ...state,
-        loading: true
-      };
+      return { ...state, loading: true };
     case SET_PROJECTS_SUCCESS:
       return {
         ...state,
@@ -55,6 +54,20 @@ const projectsListReducer = function(state = INITIAL_STATE, action) {
         projects: [
           ...state.projects.filter(project => project.id != targetProject.id),
           targetProject
+        ].sort((a, b) => b.id - a.id),
+        loading: false
+      };
+    //--------------createProject-------------//
+    case CREATE_PROJECT_REQUEST:
+      return { ...state, loading: true };
+
+    case CREATE_PROJECT_SUCCESS:
+      let newProject = action.payload.project;
+      return {
+        ...state,
+        projects: [
+          ...state.projects.filter(project => project.id != newProject.id),
+          newProject
         ].sort((a, b) => b.id - a.id),
         loading: false
       };
