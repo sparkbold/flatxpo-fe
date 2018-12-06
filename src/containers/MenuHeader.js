@@ -11,7 +11,8 @@ import {
   clickBusiness,
   clickEducation,
   clickProductivity,
-  clickGames
+  clickGames,
+  clickAll
 } from "../actions/projectActions";
 
 import AuthService from "../services/AuthService";
@@ -24,7 +25,7 @@ class MenuHeader extends Component {
   showFixedMenu = () => this.setState({ fixed: true });
 
   render() {
-    const { children } = this.props;
+    const { children, history } = this.props;
     const { fixed } = this.state;
 
     return (
@@ -47,8 +48,11 @@ class MenuHeader extends Component {
             size="large"
           >
             <Container>
-              <Menu.Item as="a" active href="/">
+              <Menu.Item as="a" active onClick={() => history.push("/")}>
                 Home
+              </Menu.Item>
+              <Menu.Item as="a" onClick={this.props.onClickAll}>
+                All
               </Menu.Item>
               <Menu.Item as="a" onClick={this.props.onClickBusiness}>
                 Business
@@ -64,7 +68,11 @@ class MenuHeader extends Component {
               </Menu.Item>
               {!Auth.loggedIn() ? (
                 <Menu.Item position="right">
-                  <Button as="a" inverted={!fixed} href="/login">
+                  <Button
+                    as="a"
+                    inverted={!fixed}
+                    onClick={() => history.push("/login")}
+                  >
                     Log in
                   </Button>
 
@@ -73,15 +81,19 @@ class MenuHeader extends Component {
                     inverted={!fixed}
                     primary={fixed}
                     style={{ marginLeft: "0.5em" }}
-                    href="/signup"
+                    onClick={() => history.push("/signup")}
                   >
                     Sign Up
                   </Button>
                 </Menu.Item>
               ) : (
                 <Menu.Item position="right">
-                  <Button as="a" inverted={!fixed} href="/profile">
-                    Profile
+                  <Button
+                    as="a"
+                    inverted={!fixed}
+                    onClick={() => history.push("/add-project")}
+                  >
+                    Add Project
                   </Button>
 
                   <Button
@@ -89,8 +101,10 @@ class MenuHeader extends Component {
                     inverted={!fixed}
                     primary={fixed}
                     style={{ marginLeft: "0.5em" }}
-                    href="/"
-                    onClick={() => Auth.logout()}
+                    onClick={() => {
+                      Auth.logout();
+                      history.push("/");
+                    }}
                   >
                     Logout
                   </Button>
@@ -108,7 +122,8 @@ const mapDispatchToProps = {
   onClickBusiness: clickBusiness,
   onClickEducation: clickEducation,
   onClickProductivity: clickProductivity,
-  onClickGames: clickGames
+  onClickGames: clickGames,
+  onClickAll: clickAll
 };
 export default connect(
   null,

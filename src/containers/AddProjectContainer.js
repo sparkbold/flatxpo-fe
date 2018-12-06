@@ -8,59 +8,50 @@ import {
   Message,
   Segment
 } from "semantic-ui-react";
-import AuthService from "../services/AuthService";
+import { connect } from "react-redux";
+import { createProject } from "../actions/projectActions";
 
-export default class AddProjectContainer extends React.Component {
-  constructor() {
-    super();
-    this.Auth = new AuthService();
-    this.state = {
-      title: "",
-      description: "",
-      github_url: "",
-      demo_url: "",
-      imgage: ""
-    };
-  }
+class AddProjectContainer extends React.Component {
+  state = {
+    title: "",
+    description: "",
+    github_url: "",
+    demo_url: "",
+    imgage: "",
+    img: "",
+    view: "1"
+  };
 
   handleChange = e => {
     // console.log(e.target.name, e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSignUp = e => {
+  handleSubmit = e => {
     console.log("AddProjectfired");
     e.preventDefault();
-    const title = this.state.title;
-    const description = this.state.description;
-    const github_url = this.state.github_url;
-    const demo_url = this.state.demo_url;
-    const image = this.state.image;
+    const formData = new FormData();
+    const projectData = {
+      title: this.state.title,
+      slug: this.state.title
+        .toLowerCase()
+        .split(" ")
+        .join("_"),
+      description: this.state.description,
+      github_url: this.state.github_url,
+      demo_url: this.state.demo_url,
+      img: this.state.img,
+      views: 1
+    };
+    formData.append("project", projectData);
+    // console.log(projectData);
+    this.props.onCreateProject(formData);
+    this.props.history.push("/");
+  };
 
-    username &&
-      password &&
-      fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          user: {
-            username,
-            password,
-            first_name,
-            last_name,
-            email
-          }
-        })
-      })
-        .then(() => this.Auth.login(this.state.username, this.state.password))
-        .then(() => this.props.history.replace("/"))
-        .catch(err => {
-          alert(err);
-          this.props.history.replace("/signup");
-        });
+  onChangeFile = e => {
+    console.log(e.target.files[0]);
+    this.setState({ img: e.target.files[0] });
   };
 
   render() {
@@ -87,69 +78,79 @@ export default class AddProjectContainer extends React.Component {
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h2" color="teal" textAlign="center">
               <Image src={require("../assets/wireframe/boolean-icing.png")} />{" "}
-              Create your account
+              Create your project
             </Header>
-            <Form size="large" onSubmit={this.handleSignUp}>
+            <Form size="large" onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
                   fluid
-                  icon="user"
+                  icon="heading"
                   iconPosition="left"
-                  placeholder="First name"
-                  name="first_name"
-                  value={this.state.first_name}
+                  placeholder="Title"
+                  name="title"
+                  value={this.state.title}
                   onChange={this.handleChange}
                 />
                 <Form.Input
                   fluid
-                  icon="user"
+                  icon="edit"
                   iconPosition="left"
-                  placeholder="Last name"
-                  name="last_name"
-                  value={this.state.last_name}
+                  placeholder="description..."
+                  name="description"
+                  value={this.state.description}
                   onChange={this.handleChange}
                 />
                 <Form.Input
                   fluid
-                  icon="user"
+                  icon="github"
                   iconPosition="left"
-                  placeholder="username"
-                  name="username"
-                  value={this.state.username}
+                  placeholder="github_url"
+                  name="github_url"
+                  value={this.state.github_url}
                   onChange={this.handleChange}
                 />
                 <Form.Input
                   fluid
-                  icon="mail"
+                  icon="linkify"
                   iconPosition="left"
-                  placeholder="Email"
-                  name="email"
-                  value={this.state.email}
+                  placeholder="demo_url"
+                  name="demo_url"
+                  value={this.state.demo_url}
                   onChange={this.handleChange}
                 />
-                <Form.Input
-                  fluid
-                  icon="lock"
-                  iconPosition="left"
-                  placeholder="Password"
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
+                <Button
+                  htmlFor="addfile"
+                  as="label"
+                  style={{ margin: "1em 0em" }}
+                >
+                  Upload Project Image
+                </Button>
+                <input
+                  hidden
+                  multiple
+                  id="addfile"
+                  type="file"
+                  onChange={this.onChangeFile}
                 />
 
                 <Button color="teal" fluid size="large">
-                  Sign Up
+                  Create Project
                 </Button>
               </Segment>
+              <Message>
+                Change your mind? <a href="/">Go back</a>
+              </Message>
             </Form>
-            <Message>
-              Already signed up with us? <a href="/login">Login</a> or{" "}
-              <a href="/">Home</a>
-            </Message>
           </Grid.Column>
         </Grid>
       </div>
     );
   }
 }
+const mapDispatchToProps = {
+  onCreateProject: createProject
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddProjectContainer);

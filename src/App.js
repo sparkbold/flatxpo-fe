@@ -35,10 +35,10 @@ MobileContainer.propTypes = {
   children: PropTypes.node
 };
 
-const ResponsiveContainer = ({ children }) => (
+const ResponsiveContainer = ({ children, history }) => (
   <div>
-    <DesktopContainer>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
+    <DesktopContainer history={history}>{children}</DesktopContainer>
+    <MobileContainer history={history}>{children}</MobileContainer>
   </div>
 );
 
@@ -47,8 +47,9 @@ ResponsiveContainer.propTypes = {
 };
 
 const App = props => {
+  console.log(props.history);
   return (
-    <ResponsiveContainer>
+    <ResponsiveContainer history={props.history}>
       <Container style={{ padding: " 8em 0em" }}>{props.children}</Container>
 
       <Segment style={{ padding: "0em" }} vertical>

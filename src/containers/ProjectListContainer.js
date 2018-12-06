@@ -1,16 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid, Container, Menu } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import App from "../App";
 
-import {
-  setProjects,
-  clickBusiness,
-  clickEducation,
-  clickProductivity,
-  clickGames,
-  clickAll
-} from "../actions/projectActions";
+import { setProjects } from "../actions/projectActions";
 import ProjectListComponent from "../components/ProjectList";
 
 class ProjectListContainer extends React.Component {
@@ -26,9 +19,13 @@ class ProjectListContainer extends React.Component {
       : this.props.projects;
     console.log("Filteredlist", filteredProjects);
     return (
-      <App>
+      <App history={this.props.history}>
         <Grid container columns={3}>
-          <ProjectListComponent projects={filteredProjects} />;
+          <ProjectListComponent
+            projects={filteredProjects}
+            history={this.props.history}
+          />
+          ;
         </Grid>
       </App>
     );

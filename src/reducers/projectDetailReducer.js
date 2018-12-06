@@ -1,6 +1,8 @@
 import {
   LOAD_PROJECT_REQUEST,
   LOAD_PROJECT_SUCCESS,
+  CREATE_PROJECT_REQUEST,
+  CREATE_PROJECT_SUCCESS,
   ADD_COMMENT_REQUEST,
   ADD_COMMENT_SUCCESS
 } from "../actions/projectActions";
@@ -13,21 +15,23 @@ const INITIAL_STATE = {
 const projectsDetailReducer = function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case LOAD_PROJECT_REQUEST:
-      return {
-        ...state,
-        loading: true
-      };
+      return { ...state, loading: true };
+
     case LOAD_PROJECT_SUCCESS:
-      // debugger;
-      return {
-        ...state,
-        project: action.payload.project,
-        loading: false
-      };
+      return { ...state, project: action.payload.project, loading: false };
+
+    //--------------createProject--------------//
+    case CREATE_PROJECT_REQUEST:
+      return { ...state, loading: true };
+
+    case CREATE_PROJECT_SUCCESS:
+      return { ...state, project: action.payload.project, loading: false };
+
+    //--------------addComment--------------//
     case ADD_COMMENT_REQUEST:
       return { ...state, loading: true };
+
     case ADD_COMMENT_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         project: {

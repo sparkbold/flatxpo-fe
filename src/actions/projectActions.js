@@ -92,19 +92,20 @@ export const CREATE_PROJECT_REQUEST = "CREATE_PROJECT_REQUEST";
 export const CREATE_PROJECT_SUCCESS = "CREATE_PROJECT_SUCCESS";
 export const CREATE_PROJECT_ERROR = "CREATE_PROJECT_ERROR";
 
-export function createProjects(projectData) {
+export function createProject(formData) {
   return dispatch => {
     dispatch({
       type: CREATE_PROJECT_REQUEST,
-      payload: { project: projectData }
+      payload: { project: formData }
     });
-
+    console.log(formData);
     fetch("http://localhost:3000/api/v1/projects", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.id_token
       },
-      body: JSON.stringify(projectData)
+      body: formData
     })
       .then(response => response.json())
       .then(response => {

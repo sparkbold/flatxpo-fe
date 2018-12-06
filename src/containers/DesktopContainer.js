@@ -5,11 +5,11 @@ import HomepageHeading from "../components/HomepageHeading";
 
 export default class DesktopContainer extends Component {
   render() {
-    const { children } = this.props;
-
+    const { children, history } = this.props;
+    console.log(history);
     return (
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-        <MenuHeader>
+        <MenuHeader history={history}>
           <HomepageHeading />
         </MenuHeader>
         {children}
