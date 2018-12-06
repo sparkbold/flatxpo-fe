@@ -22,9 +22,9 @@ class ProjectDetail extends React.Component {
             <Comment>
               <Comment.Avatar
                 src={
-                  comment.user.avatar_url
-                    ? comment.user.avatar_url
-                    : comment.user.avatar
+                  comment.user.avatar
+                    ? comment.user.avatar
+                    : require(`../assets/wireframe/boolean-icing.png`)
                 }
               />
               <Comment.Content>
