@@ -30,11 +30,7 @@ class ProjectCardComponent extends React.Component {
         onMouseLeave={() => this.setState({ isMouseOver: false })}
       >
         <Image
-          src={
-            project.img_url
-              ? project.img_url
-              : require(`../assets/wireframe/boolean-icing.png`)
-          }
+          src={project.img_url ? project.img_url : project.image}
           onClick={() => this.handleClick(project.id)}
         />
         <Card.Content>
