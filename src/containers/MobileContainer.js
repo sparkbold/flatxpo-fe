@@ -113,7 +113,7 @@ export default class MobileContainer extends Component {
                   )}
                 </Menu>
               </Container>
-              <HomepageHeading mobile />
+              {/* <HomepageHeading mobile /> */}
             </Segment>
 
             {children}

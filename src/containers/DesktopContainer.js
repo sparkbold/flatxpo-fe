@@ -8,9 +8,7 @@ export default class DesktopContainer extends Component {
     console.log("=====desktopcont==>", this.props.location);
     return (
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-        <MenuHeader>
-          <HomepageHeading />
-        </MenuHeader>
+        <MenuHeader>{/* <HomepageHeading /> */}</MenuHeader>
         {this.props.children}
       </Responsive>
     );

@@ -8,7 +8,7 @@ import App from "../App";
 class ProjectDetailsContainer extends React.Component {
   id = window.location.pathname.split("/projects/")[1];
   componentDidMount() {
-    console.log("ProjectDetailContainer fired");
+    //console.log("ProjectDetailContainer fired");
     this.props.onLoadProjectDetails(this.id);
   }
 

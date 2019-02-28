@@ -9,6 +9,8 @@ import {
   Image
 } from "semantic-ui-react";
 
+import AuthService from "../services/AuthService";
+const Auth = new AuthService();
 class ProjectDetail extends React.Component {
   state = {
     content: ""
@@ -62,27 +64,29 @@ class ProjectDetail extends React.Component {
                 Comments
               </Header>
               {projectComments}
-              <Form
-                reply
-                onSubmit={() => {
-                  onAddComment(project.id, this.state.content);
-                  this.resetForm();
-                }}
-              >
-                <Form.TextArea
-                  onChange={e =>
-                    this.setState({
-                      content: e.target.value
-                    })
-                  }
-                />
-                <Button
-                  content="Add Comment"
-                  labelPosition="left"
-                  icon="edit"
-                  primary
-                />
-              </Form>
+              {Auth.loggedIn() ? (
+                <Form
+                  reply
+                  onSubmit={() => {
+                    onAddComment(project.id, this.state.content);
+                    this.resetForm();
+                  }}
+                >
+                  <Form.TextArea
+                    onChange={e =>
+                      this.setState({
+                        content: e.target.value
+                      })
+                    }
+                  />
+                  <Button
+                    content="Add Comment"
+                    labelPosition="left"
+                    icon="edit"
+                    primary
+                  />
+                </Form>
+              ) : null}
             </Grid.Column>
             <Grid.Column floated="right" width={6}>
               <Image

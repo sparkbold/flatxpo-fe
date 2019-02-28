@@ -98,7 +98,7 @@ export function createProject(formData) {
       type: CREATE_PROJECT_REQUEST,
       payload: { project: formData }
     });
-    console.log(formData);
+    //console.log(formData);
     fetch("http://localhost:3000/api/v1/projects", {
       method: "POST",
       headers: {
