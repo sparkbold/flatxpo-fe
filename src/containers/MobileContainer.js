@@ -74,7 +74,7 @@ export default class MobileContainer extends Component {
             <Segment
               inverted
               textAlign="center"
-              style={{ minHeight: 350, padding: "1em 0em" }}
+              style={{ minHeight: 80, padding: "1em 0em" }}
               vertical
             >
               <Container>

@@ -29,7 +29,7 @@ const App = props => {
   //console.log("===AppProps===>", props);
   return (
     <ResponsiveContainer history={props.history}>
-      <Container style={{ padding: " 0em 0em" }}>{props.children}</Container>
+      <Container style={{ padding: " 4em 0em" }}>{props.children}</Container>
     </ResponsiveContainer>
   );
 };

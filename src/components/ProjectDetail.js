@@ -91,8 +91,8 @@ class ProjectDetail extends React.Component {
             <Grid.Column floated="right" width={6}>
               <Image
                 src={
-                  project.img_url
-                    ? project.img_url
+                  project.image
+                    ? project.image
                     : require(`../assets/wireframe/boolean-icing.png`)
                 }
               />
