@@ -77,7 +77,7 @@ class AddProjectContainer extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="teal" textAlign="center">
+            <Header as="h2" color="blue" textAlign="center">
               <Image src={require("../assets/wireframe/boolean-icing.png")} />{" "}
               Create your project
             </Header>
@@ -134,7 +134,7 @@ class AddProjectContainer extends React.Component {
                   onChange={this.onChangeFile}
                 />
 
-                <Button color="teal" fluid size="large">
+                <Button color="blue" fluid size="large">
                   Create Project
                 </Button>
               </Segment>

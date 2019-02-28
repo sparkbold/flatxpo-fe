@@ -64,7 +64,8 @@ export default class Signup extends React.Component {
   };
 
   render() {
-    return <div className="login-form">
+    return (
+      <div className="login-form">
         {/*
       Heads up! The styles below are necessary for the correct render of this example.
       You can do same with CSS, the main idea is that all the elements up to the `Grid`
@@ -78,31 +79,77 @@ export default class Signup extends React.Component {
         height: 100%;
       }
     `}</style>
-        <Grid textAlign="center" style={{ height: "100%" }} verticalAlign="middle">
+        <Grid
+          textAlign="center"
+          style={{ height: "100%" }}
+          verticalAlign="middle"
+        >
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="teal" textAlign="center">
-              <Image src={require("../assets/wireframe/boolean-icing.png")} /> Create your account
+            <Header as="h2" color="blue" textAlign="center">
+              <Image src={require("../assets/wireframe/boolean-icing.png")} />{" "}
+              Create your account
             </Header>
             <Form size="large" onSubmit={this.handleSignUp}>
               <Segment stacked>
-                <Form.Input fluid icon="user" iconPosition="left" placeholder="First name" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
-                <Form.Input fluid icon="user" iconPosition="left" placeholder="Last name" name="last_name" value={this.state.last_name} onChange={this.handleChange} />
-              <Form.Input fluid icon="user" iconPosition="left" placeholder="username" name="username" value={this.state.username} onChange={this.handleChange} />
-                <Form.Input fluid icon="mail" iconPosition="left" placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange} />
-                <Form.Input fluid icon="lock" iconPosition="left" placeholder="Password" type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="First name"
+                  name="first_name"
+                  value={this.state.first_name}
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="Last name"
+                  name="last_name"
+                  value={this.state.last_name}
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="username"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="mail"
+                  iconPosition="left"
+                  placeholder="Email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
 
-                <Button color="teal" fluid size="large">
+                <Button color="blue" fluid size="large">
                   Sign Up
                 </Button>
               </Segment>
             </Form>
             <Message>
-              Already signed up with us? <a href="/login">Login</a> or <a href="/">
-                Home
-              </a>
+              Already signed up with us? <a href="/login">Login</a> or{" "}
+              <a href="/">Home</a>
             </Message>
           </Grid.Column>
         </Grid>
-      </div>;
+      </div>
+    );
   }
 }

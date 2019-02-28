@@ -5,6 +5,7 @@ import LoaderComponent from "./LoaderComponent";
 
 const styles = {
   projectColumn: {
+    minWidth: 250,
     marginBottom: 25
   }
 };
@@ -31,8 +32,8 @@ const ProjectListComponent = ({ projects, loading, history }) => {
           <a>OUR FLATXPO's PROJECTS</a>
         </Divider>
       </Container>
-      <Grid container columns={3}>
-        <Grid.Row>
+      <Grid>
+        <Grid.Row centered>
           {projectColumns}
           <LoaderComponent loading={loading} />
         </Grid.Row>

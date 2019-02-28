@@ -51,7 +51,7 @@ export default class Login extends React.Component {
   };
 
   render() {
-    console.log("Login fired");
+    //console.log("Login fired");
     return (
       <div className="login-form">
         {/*
@@ -72,7 +72,7 @@ export default class Login extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="teal" textAlign="center">
+            <Header as="h2" color="blue" textAlign="center">
               <Image src={require("../assets/wireframe/boolean-icing.png")} />{" "}
               Log-in to your account
             </Header>
@@ -98,7 +98,7 @@ export default class Login extends React.Component {
                   onChange={this.handleChange}
                 />
 
-                <Button color="teal" fluid size="large">
+                <Button color="blue" fluid size="large">
                   Login
                 </Button>
               </Segment>

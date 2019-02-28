@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid } from "semantic-ui-react";
+import { Grid, Responsive } from "semantic-ui-react";
 import App from "../App";
 
 import { setProjects } from "../actions/projectActions";
@@ -20,12 +20,11 @@ class ProjectListContainer extends React.Component {
     console.log("Filteredlist", filteredProjects);
     return (
       <App history={this.props.history}>
-        <Grid container columns={3}>
+        <Grid>
           <ProjectListComponent
             projects={filteredProjects}
             history={this.props.history}
           />
-          ;
         </Grid>
       </App>
     );
