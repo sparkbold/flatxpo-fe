@@ -20,28 +20,31 @@ class ProjectDetail extends React.Component {
     // console.log("ProjectDetail props", this.props);
     const { project, onAddComment } = this.props;
     console.log(project.user ? project.user.username : "No user");
-    const projectComments = project.comments
-      ? project.comments.map(comment => (
-          <Comment.Group key={comment.id}>
-            <Comment>
-              <Comment.Avatar
-                src={
-                  comment.user.avatar
-                    ? comment.user.avatar
-                    : require(`../assets/wireframe/boolean-icing.png`)
-                }
-              />
-              <Comment.Content>
-                <Comment.Author as="a">{comment.user.username}</Comment.Author>
-                <Comment.Metadata>
-                  <div>{comment.created_at}</div>
-                </Comment.Metadata>
-                <Comment.Text>{comment.content}</Comment.Text>
-              </Comment.Content>
-            </Comment>
-          </Comment.Group>
-        ))
-      : null;
+    const projectComments =
+      project.comments && project.user.username
+        ? project.comments.map(comment => (
+            <Comment.Group key={comment.id}>
+              <Comment>
+                <Comment.Avatar
+                  src={
+                    comment.user.avatar
+                      ? comment.user.avatar
+                      : require(`../assets/wireframe/boolean-icing.png`)
+                  }
+                />
+                <Comment.Content>
+                  <Comment.Author as="a">
+                    {comment.user.username}
+                  </Comment.Author>
+                  <Comment.Metadata>
+                    <div>{comment.created_at}</div>
+                  </Comment.Metadata>
+                  <Comment.Text>{comment.content}</Comment.Text>
+                </Comment.Content>
+              </Comment>
+            </Comment.Group>
+          ))
+        : null;
 
     return (
       <Segment style={{ padding: "1em 0em" }} vertical>

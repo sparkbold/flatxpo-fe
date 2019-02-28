@@ -23,7 +23,7 @@ code {
 
 .ui.inverted.segment:hover {
   background: #e66465 !important;
-
+  /* background-image: url('http://trung.cool/assets/images/tech/background.jpg') */
 }
 
 .ui.secondary.inverted.pointing.menu {
