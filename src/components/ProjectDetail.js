@@ -21,7 +21,7 @@ class ProjectDetail extends React.Component {
   };
   render = () => {
     // console.log("ProjectDetail props", this.props);
-    const { project, onAddComment } = this.props;
+    const { project, onAddComment, history } = this.props;
     console.log(project.user ? project.user.username : "No user");
     const projectComments =
       project.comments && project.user.username
