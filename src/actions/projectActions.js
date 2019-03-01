@@ -10,7 +10,7 @@ export function setProjects() {
       type: SET_PROJECTS_REQUEST
     });
 
-    fetch("http://localhost:3000/api/v1/projects")
+    fetch("https://flatxpo-api.herokuapp.com/api/v1/projects")
       .then(response => response.json())
       .then(response => {
         dispatch({
@@ -69,7 +69,7 @@ export function loadProjectDetails(projectId) {
     });
 
     // Dispatch vanilla actions asynchronously
-    fetch(`http://localhost:3000/api/v1/projects/${projectId}`)
+    fetch(`https://flatxpo-api.herokuapp.com/api/v1/projects/${projectId}`)
       .then(response => response.json())
       .then(response => {
         // console.log(response);
@@ -98,8 +98,8 @@ export function createProject(formData) {
       type: CREATE_PROJECT_REQUEST,
       payload: { project: formData }
     });
-    console.log(formData);
-    fetch("http://localhost:3000/api/v1/projects", {
+    //console.log(formData);
+    fetch("https://flatxpo-api.herokuapp.com/api/v1/projects", {
       method: "POST",
       headers: {
         Authorization: "Bearer " + localStorage.id_token
@@ -134,7 +134,7 @@ export function createProject(formData) {
 //       payload: {project_id, content}
 //     });
 
-//     fetch("http://localhost:3000/api/v1/comments", {
+//     fetch("https://flatxpo-api.herokuapp.com/api/v1/comments", {
 //       method: "PATCH",
 //       headers: {
 //         "Content-Type": "application/json",
@@ -170,7 +170,7 @@ export function addComment(project_id, content) {
       payload: { project_id, content }
     });
 
-    fetch("http://localhost:3000/api/v1/comments", {
+    fetch("https://flatxpo-api.herokuapp.com/api/v1/comments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

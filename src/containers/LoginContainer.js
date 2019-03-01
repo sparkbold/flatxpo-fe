@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router";
 import {
   Button,
   Form,
@@ -10,7 +11,7 @@ import {
 } from "semantic-ui-react";
 import AuthService from "../services/AuthService";
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   constructor() {
     super();
     this.Auth = new AuthService();
@@ -51,7 +52,7 @@ export default class Login extends React.Component {
   };
 
   render() {
-    console.log("Login fired");
+    //console.log("Login fired");
     return (
       <div className="login-form">
         {/*
@@ -72,7 +73,7 @@ export default class Login extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="teal" textAlign="center">
+            <Header as="h2" color="blue" textAlign="center">
               <Image src={require("../assets/wireframe/boolean-icing.png")} />{" "}
               Log-in to your account
             </Header>
@@ -98,13 +99,15 @@ export default class Login extends React.Component {
                   onChange={this.handleChange}
                 />
 
-                <Button color="teal" fluid size="large">
+                <Button color="blue" fluid size="large">
                   Login
                 </Button>
               </Segment>
             </Form>
             <Message>
-              New to us? <a href="/signup">Sign Up</a> or <a href="/">Home</a>
+              New to us?{" "}
+              <a onClick={() => this.props.history.push("/signup")}>Sign Up</a>{" "}
+              or <a onClick={() => this.props.history.push("/")}>Home</a>
             </Message>
           </Grid.Column>
         </Grid>
@@ -112,3 +115,5 @@ export default class Login extends React.Component {
     );
   }
 }
+
+export default withRouter(Login);

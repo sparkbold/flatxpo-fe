@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router";
 import {
   Button,
   Form,
@@ -77,7 +78,7 @@ class AddProjectContainer extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="teal" textAlign="center">
+            <Header as="h2" color="blue" textAlign="center">
               <Image src={require("../assets/wireframe/boolean-icing.png")} />{" "}
               Create your project
             </Header>
@@ -134,12 +135,13 @@ class AddProjectContainer extends React.Component {
                   onChange={this.onChangeFile}
                 />
 
-                <Button color="teal" fluid size="large">
+                <Button color="blue" fluid size="large">
                   Create Project
                 </Button>
               </Segment>
               <Message>
-                Change your mind? <a href="/">Go back</a>
+                Change your mind?{" "}
+                <a onClick={() => this.props.history.push("/")}>Go back</a>
               </Message>
             </Form>
           </Grid.Column>
@@ -151,7 +153,9 @@ class AddProjectContainer extends React.Component {
 const mapDispatchToProps = {
   onCreateProject: createProject
 };
-export default connect(
-  null,
-  mapDispatchToProps
-)(AddProjectContainer);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(AddProjectContainer)
+);

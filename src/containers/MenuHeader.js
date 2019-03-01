@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import {
   Button,
   Container,
@@ -37,7 +38,7 @@ class MenuHeader extends Component {
         <Segment
           inverted
           textAlign="center"
-          style={{ minHeight: 700, padding: "1em 0em" }}
+          style={{ minHeight: 80, padding: "1em 0em" }}
           vertical
         >
           <Menu
@@ -48,7 +49,7 @@ class MenuHeader extends Component {
             size="large"
           >
             <Container>
-              <Menu.Item as="a" active onClick={() => history.push("/")}>
+              <Menu.Item as="a" onClick={() => history.push("/")}>
                 Home
               </Menu.Item>
               <Menu.Item
@@ -58,33 +59,14 @@ class MenuHeader extends Component {
               >
                 All
               </Menu.Item>
-              <Menu.Item
-                as="a"
-                href="#projects"
-                onClick={this.props.onClickBusiness}
-              >
-                Business
+              <Menu.Item as="a" onClick={this.props.onClickBusiness}>
+                Filter 1
               </Menu.Item>
-              <Menu.Item
-                as="a"
-                href="#projects"
-                onClick={this.props.onClickEducation}
-              >
-                Education
+              <Menu.Item as="a" onClick={this.props.onClickProductivity}>
+                Filter 2
               </Menu.Item>
-              <Menu.Item
-                as="a"
-                href="#projects"
-                onClick={this.props.onClickProductivity}
-              >
-                Productivity
-              </Menu.Item>
-              <Menu.Item
-                as="a"
-                href="#projects"
-                onClick={this.props.onClickGames}
-              >
-                Games
+              <Menu.Item as="a" onClick={this.props.onClickGames}>
+                Filter 3
               </Menu.Item>
               {!Auth.loggedIn() ? (
                 <Menu.Item position="right">
@@ -145,7 +127,9 @@ const mapDispatchToProps = {
   onClickGames: clickGames,
   onClickAll: clickAll
 };
-export default connect(
-  null,
-  mapDispatchToProps
-)(MenuHeader);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(MenuHeader)
+);

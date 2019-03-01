@@ -47,10 +47,16 @@ export default class MobileContainer extends Component {
             <Menu.Item as="a">Game</Menu.Item>
             {!Auth.loggedIn() ? (
               <Fragment>
-                <Menu.Item as="a" href="/login">
+                <Menu.Item
+                  as="a"
+                  onClick={() => this.props.history.push("/login")}
+                >
                   Log in
                 </Menu.Item>
-                <Menu.Item as="a" href="/signup">
+                <Menu.Item
+                  as="a"
+                  onClick={() => this.props.history.push("/signup")}
+                >
                   Sign Up
                 </Menu.Item>
               </Fragment>
@@ -74,7 +80,7 @@ export default class MobileContainer extends Component {
             <Segment
               inverted
               textAlign="center"
-              style={{ minHeight: 350, padding: "1em 0em" }}
+              style={{ minHeight: 80, padding: "1em 0em" }}
               vertical
             >
               <Container>
@@ -113,7 +119,7 @@ export default class MobileContainer extends Component {
                   )}
                 </Menu>
               </Container>
-              <HomepageHeading mobile />
+              {/* <HomepageHeading mobile /> */}
             </Segment>
 
             {children}

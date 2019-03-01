@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container, Header, Icon } from "semantic-ui-react";
+import { withRouter } from "react-router-dom";
 
 const HomepageHeading = ({ mobile }) => (
   <Container text>
@@ -24,10 +25,14 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? "0.5em" : "1.5em"
       }}
     />
-    <Button primary size="huge" href="/signup">
+    <Button
+      primary
+      size="huge"
+      onClick={() => this.props.history.push("/signup")}
+    >
       Get Started
       <Icon name="right arrow" />
     </Button>
   </Container>
 );
-export default HomepageHeading;
+export default withRouter(HomepageHeading);

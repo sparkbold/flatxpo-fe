@@ -5,6 +5,7 @@ import LoaderComponent from "./LoaderComponent";
 
 const styles = {
   projectColumn: {
+    minWidth: 250,
     marginBottom: 25
   }
 };
@@ -24,15 +25,6 @@ const ProjectListComponent = ({ projects, loading, history }) => {
   return (
     <Segment vertical>
       <Container text>
-        <Header as="h3" style={{ fontSize: "2em" }} textAlign="center">
-          Breaking The Grid, Grabs Your Attention
-        </Header>
-        {/* <p style={{ fontSize: "1.33em" }}>
-          Instead of focusing on content creation and hard work, we have learned
-          how to master the art of doing nothing by providing massive amounts of
-          whitespace and generic content that can seem massive, monolithic and
-          worth your attention.{" "}
-        </p> */}
         <Divider
           as="h4"
           className="header"
@@ -43,8 +35,8 @@ const ProjectListComponent = ({ projects, loading, history }) => {
           <a>OUR FLATXPO's PROJECTS</a>
         </Divider>
       </Container>
-      <Grid container columns={3}>
-        <Grid.Row>
+      <Grid>
+        <Grid.Row centered>
           {projectColumns}
           <LoaderComponent loading={loading} />
         </Grid.Row>
