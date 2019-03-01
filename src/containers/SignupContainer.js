@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router";
 import {
   Button,
   Form,
@@ -10,7 +11,7 @@ import {
 } from "semantic-ui-react";
 import AuthService from "../services/AuthService";
 
-export default class Signup extends React.Component {
+class Signup extends React.Component {
   constructor() {
     super();
     this.Auth = new AuthService();
@@ -144,8 +145,9 @@ export default class Signup extends React.Component {
               </Segment>
             </Form>
             <Message>
-              Already signed up with us? <a href="/login">Login</a> or{" "}
-              <a href="/">Home</a>
+              Already signed up with us?{" "}
+              <a onClick={() => this.props.history.push("/login")}>Login</a> or{" "}
+              <a onClick={() => this.props.history.push("/")}>Home</a>
             </Message>
           </Grid.Column>
         </Grid>
@@ -153,3 +155,4 @@ export default class Signup extends React.Component {
     );
   }
 }
+export default withRouter(Signup);

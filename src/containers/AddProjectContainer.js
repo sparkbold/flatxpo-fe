@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router";
 import {
   Button,
   Form,
@@ -139,7 +140,8 @@ class AddProjectContainer extends React.Component {
                 </Button>
               </Segment>
               <Message>
-                Change your mind? <a href="/">Go back</a>
+                Change your mind?{" "}
+                <a onClick={() => this.props.history.push("/")}>Go back</a>
               </Message>
             </Form>
           </Grid.Column>
@@ -151,7 +153,9 @@ class AddProjectContainer extends React.Component {
 const mapDispatchToProps = {
   onCreateProject: createProject
 };
-export default connect(
-  null,
-  mapDispatchToProps
-)(AddProjectContainer);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(AddProjectContainer)
+);
