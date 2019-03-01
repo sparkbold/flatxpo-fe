@@ -8,6 +8,7 @@ import {
   Form,
   Image
 } from "semantic-ui-react";
+import { withRouter } from "react-router";
 
 import AuthService from "../services/AuthService";
 const Auth = new AuthService();
@@ -100,7 +101,7 @@ class ProjectDetail extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign="center">
-              <Button size="huge" href="/">
+              <Button size="huge" onClick={() => history.push("/")}>
                 Back
               </Button>
             </Grid.Column>
@@ -111,4 +112,4 @@ class ProjectDetail extends React.Component {
   };
 }
 
-export default ProjectDetail;
+export default withRouter(ProjectDetail);
