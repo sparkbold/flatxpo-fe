@@ -209,7 +209,7 @@ export function addVote(project_id) {
       payload: { project_id }
     });
 
-    fetch("http://localhost:3000/api/v1/votes", {
+    fetch("https://flatxpo-api.herokuapp.com/api/v1/votes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
