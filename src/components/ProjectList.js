@@ -32,7 +32,7 @@ const ProjectListComponent = ({ projects, loading, history }) => {
           style={{ margin: "3em 0em", textTransform: "uppercase" }}
         >
           {/* eslint-disable-next-line */}
-          <a>OUR FLATXPO's PROJECTS</a>
+          <a>"Failing is not an option... it's requirement to success"</a>
         </Divider>
       </Container>
       <Grid>
