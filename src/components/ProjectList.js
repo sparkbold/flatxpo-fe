@@ -32,7 +32,9 @@ const ProjectListComponent = ({ projects, loading, history }) => {
           style={{ margin: "3em 0em", textTransform: "uppercase" }}
         >
           {/* eslint-disable-next-line */}
-          <a>"Failing is not an option... it's requirement to success"</a>
+          <a href="https://www.entrepreneur.com/article/238925">
+            Fail fast, Fail often.
+          </a>
         </Divider>
       </Container>
       <Grid>
