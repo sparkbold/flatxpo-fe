@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import {
   Button,
   Container,
@@ -8,12 +8,23 @@ import {
   Segment,
   Sidebar
 } from "semantic-ui-react";
-import HomepageHeading from "../components/HomepageHeading";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import {
+  clickBusiness,
+  clickEducation,
+  clickProductivity,
+  clickGames,
+  clickAll
+} from "../actions/projectActions";
 import AuthService from "../services/AuthService";
 const Auth = new AuthService();
 
-export default class MobileContainer extends Component {
+class MobileContainer extends Component {
   state = {};
+
+  hideFixedMenu = () => this.setState({ fixed: false });
+  showFixedMenu = () => this.setState({ fixed: true });
 
   handlePusherClick = () => {
     const { sidebarOpened } = this.state;
@@ -25,7 +36,8 @@ export default class MobileContainer extends Component {
     this.setState({ sidebarOpened: !this.state.sidebarOpened });
 
   render() {
-    const { children } = this.props;
+    const { children, history } = this.props;
+    const { fixed } = this.state;
     const { sidebarOpened } = this.state;
 
     return (
@@ -38,37 +50,64 @@ export default class MobileContainer extends Component {
             vertical
             visible={sidebarOpened}
           >
-            <Menu.Item as="a" active>
+            <Menu.Item as="a" onClick={() => history.push("/")}>
               Home
             </Menu.Item>
-            <Menu.Item as="a">Business</Menu.Item>
-            <Menu.Item as="a">Entertainment</Menu.Item>
-            <Menu.Item as="a">Productivity</Menu.Item>
-            <Menu.Item as="a">Game</Menu.Item>
+            <Menu.Item as="a" href="#projects" onClick={this.props.onClickAll}>
+              All
+            </Menu.Item>
+            <Menu.Item as="a" onClick={this.props.onClickBusiness}>
+              Filter 1
+            </Menu.Item>
+            <Menu.Item as="a" onClick={this.props.onClickProductivity}>
+              Filter 2
+            </Menu.Item>
+            <Menu.Item as="a" onClick={this.props.onClickGames}>
+              Filter 3
+            </Menu.Item>
             {!Auth.loggedIn() ? (
-              <Fragment>
-                <Menu.Item
+              <Menu.Item position="right">
+                <Button
                   as="a"
-                  onClick={() => this.props.history.push("/login")}
+                  inverted={!fixed}
+                  onClick={() => history.push("/login")}
                 >
                   Log in
-                </Menu.Item>
-                <Menu.Item
+                </Button>
+
+                <Button
                   as="a"
-                  onClick={() => this.props.history.push("/signup")}
+                  inverted={!fixed}
+                  primary={fixed}
+                  style={{ marginLeft: "0.5em" }}
+                  onClick={() => history.push("/signup")}
                 >
                   Sign Up
-                </Menu.Item>
-              </Fragment>
+                </Button>
+              </Menu.Item>
             ) : (
-              <Fragment>
-                <Menu.Item as="a" href="/login">
-                  Log in
-                </Menu.Item>
-                <Menu.Item as="a" href="/signup">
-                  Sign Up
-                </Menu.Item>
-              </Fragment>
+              <Menu.Item position="right">
+                <Button
+                  as="a"
+                  inverted={!fixed}
+                  onClick={() => history.push("/add-project")}
+                >
+                  Add Project
+                </Button>
+
+                <Button
+                  as="a"
+                  inverted={!fixed}
+                  primary={fixed}
+                  style={{ marginLeft: "0.5em" }}
+                  onClick={() => {
+                    Auth.logout();
+                    history.push("/");
+                  }}
+                >
+                  Logout
+                </Button>
+              </Menu.Item>
             )}
           </Sidebar>
 
@@ -129,3 +168,16 @@ export default class MobileContainer extends Component {
     );
   }
 }
+const mapDispatchToProps = {
+  onClickBusiness: clickBusiness,
+  onClickEducation: clickEducation,
+  onClickProductivity: clickProductivity,
+  onClickGames: clickGames,
+  onClickAll: clickAll
+};
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(MobileContainer)
+);

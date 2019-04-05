@@ -52,7 +52,7 @@ const projectsListReducer = function(state = INITIAL_STATE, action) {
       return {
         ...state,
         projects: [
-          ...state.projects.filter(project => project.id != targetProject.id),
+          ...state.projects.filter(project => project.id !== targetProject.id),
           targetProject
         ].sort((a, b) => b.id - a.id),
         loading: false
@@ -66,7 +66,7 @@ const projectsListReducer = function(state = INITIAL_STATE, action) {
       return {
         ...state,
         projects: [
-          ...state.projects.filter(project => project.id != newProject.id),
+          ...state.projects.filter(project => project.id !== newProject.id),
           newProject
         ].sort((a, b) => b.id - a.id),
         loading: false

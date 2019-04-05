@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Segment, Container, Header, Divider } from "semantic-ui-react";
+import { Grid, Segment, Container, Divider } from "semantic-ui-react";
 import ProjectCard from "../components/ProjectCard";
 import LoaderComponent from "./LoaderComponent";
 

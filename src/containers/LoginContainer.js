@@ -104,6 +104,7 @@ class Login extends React.Component {
                 </Button>
               </Segment>
             </Form>
+
             <Message>
               New to us?{" "}
               <a onClick={() => this.props.history.push("/signup")}>Sign Up</a>{" "}
